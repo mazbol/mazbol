@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+<script>
+fetch('https://api.themoviedb.org/3/movie/popular?api_key=API_KEY&page=1')
+.then(res=>res.json())
+.then(data=>{
+  data.results.forEach(movie=>{
+    document.write("<url><loc>https://domain.com/"+movie.id+"</loc></url>");
+  });
+});
+</script>
+
+</urlset>
