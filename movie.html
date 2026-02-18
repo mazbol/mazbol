@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Loading...</title>
+<meta name="description" content="">
+<meta property="og:image" content="">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="movie">
+    <img id="poster">
+    <div>
+      <h1 id="title"></h1>
+      <p id="overview"></p>
+      <div id="trailer"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const API_KEY = "e0b203e42e12587b6ce507b8aa452e8c";
+const BASE = "https://api.themoviedb.org/3";
+const id = window.location.pathname.replace("/", "");
+
+fetch(`${BASE}/movie/${id}?api_key=${API_KEY}&append_to_response=videos`)
+.then(res=>res.json())
+.then(data=>{
+
+  const poster = data.poster_path
+    ? `/posters/${id}.jpg`
+    : '';
+
+  document.title = data.title;
+  document.querySelector('meta[name="description"]').content = data.overview;
+
+  document.getElementById("poster").src =
+    "https://image.tmdb.org/t/p/w500" + data.poster_path;
+
+  document.getElementById("title").innerText = data.title;
+  document.getElementById("overview").innerText = data.overview;
+
+  const trailer = data.videos.results.find(v => v.type==="Trailer");
+  if(trailer){
+    document.getElementById("trailer").innerHTML =
+      `<iframe width="100%" height="400"
+       src="https://www.youtube.com/embed/${trailer.key}"
+       allowfullscreen></iframe>`;
+  }
+});
+</script>
+
+</body>
+</html>
