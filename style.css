@@ -1,0 +1,34 @@
+body{
+  background:#0f0f0f;
+  color:#fff;
+  font-family:Arial;
+  margin:0;
+}
+header{
+  padding:20px;
+  font-size:24px;
+  background:#111;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:20px;
+  padding:20px;
+}
+.card{
+  text-decoration:none;
+  color:#fff;
+}
+.card img{
+  width:100%;
+  border-radius:8px;
+}
+.movie{
+  display:flex;
+  gap:30px;
+  padding:20px;
+}
+.container{
+  max-width:1200px;
+  margin:auto;
+}
